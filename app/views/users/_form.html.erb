@@ -1,0 +1,38 @@
+<%= form_with model: user do |f| %>
+
+  <% if user.errors.any? %>
+    <div style="color:red">
+      <% user.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </p>
+
+  <p>
+    <%= f.label :role %>
+    <%= f.select :role, User::ROLES %>
+  </p>
+
+  <p>
+    <%= f.label :status %>
+    <%= f.select :status, User::STATUSES %>
+  </p>
+
+  <p>
+    <%= f.label :balance %>
+    <%= f.number_field :balance, step: 0.01 %>
+  </p>
+
+  <%= f.submit %>
+
+<% end %>
