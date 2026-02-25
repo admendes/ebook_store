@@ -10,6 +10,7 @@
       <th>Status</th>
       <th>Seller</th>
       <th>Purchases</th>
+      <th>Cover</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -25,9 +26,14 @@
           <%= link_to "View", ebook %>
           <%= link_to "Edit", edit_ebook_path(ebook) %>
           <% unless ebook.live? %>
-            <%= link_to "Advance Status", advance_status_ebook_path(ebook), data: { turbo_method: :patch } %>
+            <%= button_to "Advance Status", advance_status_ebook_path(ebook), method: :patch %>
           <% end %>
           <%= button_to "Delete", ebook, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+        </td>
+        <td>
+          <% if ebook.cover_image.attached? %>
+            <%= image_tag ebook.cover_image, width: 50 %>
+          <% end %>
         </td>
       </tr>
     <% end %>

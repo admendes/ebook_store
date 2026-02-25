@@ -1,9 +1,13 @@
 <h1><%= @user.name %></h1>
 
+<% if @user.profile_image.attached? %>
+  <%= image_tag @user.profile_image, width: 150, style: "border-radius:50%" %>
+<% end %>
+
 <p><strong>Email:</strong> <%= @user.email %></p>
 <p><strong>Role:</strong> <%= @user.role %></p>
 <p><strong>Status:</strong> <%= @user.status %></p>
-<p><strong>Balance:</strong> <%= @user.balance %></p>
+<p><strong>Balance:</strong> $<%= @user.balance %></p>
 
 <%= link_to "Edit", edit_user_path(@user) %>
 <%= link_to "Back", users_path %>

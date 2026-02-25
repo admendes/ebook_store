@@ -1,5 +1,9 @@
 <h1><%= @ebook.title %></h1>
 
+<% if @ebook.cover_image.attached? %>
+  <%= image_tag @ebook.cover_image, width: 200 %>
+<% end %>
+
 <p><strong>Description:</strong> <%= @ebook.description %></p>
 <p><strong>Price:</strong> $<%= @ebook.price %></p>
 <p><strong>Status:</strong> <%= @ebook.status %></p>
@@ -27,7 +31,7 @@
 <% end %>
 
 <% unless @ebook.live? %>
-  <%= link_to "Advance Status", advance_status_ebook_path(@ebook), data: { turbo_method: :patch } %>
+  <%= button_to "Advance Status", advance_status_ebook_path(@ebook), method: :patch %>
 <% end %>
 
 <%= link_to "Edit", edit_ebook_path(@ebook) %>

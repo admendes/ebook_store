@@ -56,7 +56,7 @@ class EbooksController < ApplicationController
   private
 
   def ebook_params
-    params.require(:ebook).permit(:title, :description, :price, :status, :user_id, :preview_pdf)
+    params.require(:ebook).permit(:title, :description, :price, :status, :user_id, :preview_pdf, :cover_image)
   end
 
 end

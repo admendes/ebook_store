@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :ebooks, dependent: :destroy
   has_many :purchases, foreign_key: :buyer_id, dependent: :destroy
   has_many :purchased_ebooks, through: :purchases, source: :ebook
+  has_one_attached :profile_image
 
   ROLES = %w[seller buyer].freeze
   STATUSES = %w[enabled disabled].freeze

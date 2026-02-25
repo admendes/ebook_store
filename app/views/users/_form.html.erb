@@ -1,4 +1,4 @@
-<%= form_with model: user do |f| %>
+<%= form_with model: user, multipart: true do |f| %>
 
   <% if user.errors.any? %>
     <div style="color:red">
@@ -31,6 +31,11 @@
   <p>
     <%= f.label :balance %>
     <%= f.number_field :balance, step: 0.01 %>
+  </p>
+
+  <p>
+    <%= f.label :profile_image, "Profile Image" %>
+    <%= f.file_field :profile_image, accept: "image/*" %>
   </p>
 
   <%= f.submit %>

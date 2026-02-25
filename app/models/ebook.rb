@@ -7,6 +7,7 @@ class Ebook < ApplicationRecord
   has_many :visitors, dependent: :destroy
 
   has_one_attached :preview_pdf
+  has_one_attached :cover_image
 
   STATUSES = %w[draft pending live].freeze
 
