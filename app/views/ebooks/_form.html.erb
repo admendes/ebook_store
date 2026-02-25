@@ -1,0 +1,38 @@
+<%= form_with model: ebook, multipart: true do |f| %>
+
+  <% if ebook.errors.any? %>
+    <div style="color:red">
+      <% ebook.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.label :price %>
+    <%= f.number_field :price, step: 0.01 %>
+  </p>
+
+  <p>
+    <%= f.label :user_id, "Seller" %>
+    <%= f.select :user_id, User.where(role: "seller").map { |u| [u.name, u.id] }, prompt: "Select a seller" %>
+  </p>
+
+  <p>
+    <%= f.label :preview_pdf, "Preview PDF" %>
+    <%= f.file_field :preview_pdf, accept: "application/pdf" %>
+  </p>
+
+  <%= f.submit %>
+
+<% end %>

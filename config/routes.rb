@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
-  root "users#index"
-  
+  root "ebooks#index"
+
   resources :users do
     member do
       patch :toggle_status
     end
   end
 
-  resources :ebooks
+  resources :ebooks do
+    member do
+      patch :advance_status
+      get :download_preview
+    end
+  end
 end

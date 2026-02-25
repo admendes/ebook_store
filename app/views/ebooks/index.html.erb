@@ -1,0 +1,35 @@
+<h1>Ebooks</h1>
+
+<%= link_to "New Ebook", new_ebook_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Seller</th>
+      <th>Purchases</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ebooks.each do |ebook| %>
+      <tr>
+        <td><%= ebook.title %></td>
+        <td><%= ebook.price %></td>
+        <td><%= ebook.status %></td>
+        <td><%= ebook.user.name %></td>
+        <td><%= ebook.purchase_count %></td>
+        <td>
+          <%= link_to "View", ebook %>
+          <%= link_to "Edit", edit_ebook_path(ebook) %>
+          <% unless ebook.live? %>
+            <%= link_to "Advance Status", advance_status_ebook_path(ebook), data: { turbo_method: :patch } %>
+          <% end %>
+          <%= button_to "Delete", ebook, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

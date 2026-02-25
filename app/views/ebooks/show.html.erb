@@ -1,0 +1,20 @@
+<h1><%= @ebook.title %></h1>
+
+<p><strong>Description:</strong> <%= @ebook.description %></p>
+<p><strong>Price:</strong> $<%= @ebook.price %></p>
+<p><strong>Status:</strong> <%= @ebook.status %></p>
+<p><strong>Seller:</strong> <%= @ebook.user.name %></p>
+<p><strong>Page Visits:</strong> <%= @ebook.page_visit_count %></p>
+<p><strong>Preview Views:</strong> <%= @ebook.preview_view_count %></p>
+<p><strong>Purchases:</strong> <%= @ebook.purchase_count %></p>
+
+<% if @ebook.preview_pdf.attached? %>
+  <%= link_to "Download Preview PDF", download_preview_ebook_path(@ebook) %>
+<% end %>
+
+<% unless @ebook.live? %>
+  <%= link_to "Advance Status", advance_status_ebook_path(@ebook), data: { turbo_method: :patch } %>
+<% end %>
+
+<%= link_to "Edit", edit_ebook_path(@ebook) %>
+<%= link_to "Back", ebooks_path %>
