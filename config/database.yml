@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("DB_USERNAME", "runtime") %>
+  password: <%= ENV.fetch("DB_PASSWORD", "") %>
+  host: localhost
+
+development:
+  <<: *default
+  database: ebook_store_development
+
+test:
+  <<: *default
+  database: ebook_store_test
+
+production:
+  <<: *default
+  database: ebook_store_production
