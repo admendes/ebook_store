@@ -1,0 +1,10 @@
+<h1>You made a sale!</h1>
+
+<p>Hi <%= @seller.name %>,</p>
+
+<p>Your ebook <strong><%= @ebook.title %></strong> was just purchased!</p>
+
+<p><strong>Sale price:</strong> $<%= @purchase.amount %></p>
+<p><strong>Your commission (10%):</strong> $<%= @commission %></p>
+
+<p>Your new balance: $<%= @seller.balance %></p>

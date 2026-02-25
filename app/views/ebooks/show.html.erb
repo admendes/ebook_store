@@ -12,6 +12,20 @@
   <%= link_to "Download Preview PDF", download_preview_ebook_path(@ebook) %>
 <% end %>
 
+<% if @ebook.live? %>
+  <hr>
+  <h3>Purchase this Ebook</h3>
+  <p>Select a buyer:</p>
+  <%= form_with url: purchases_path, method: :post do |f| %>
+    <%= f.hidden_field :ebook_id, value: @ebook.id %>
+    <p>
+      <%= f.label :buyer_id, "Buy as:" %>
+      <%= f.select :buyer_id, User.where(role: "buyer").map { |u| ["#{u.name} (Balance: $#{u.balance})", u.id] }, prompt: "Select a buyer" %>
+    </p>
+    <%= f.submit "Buy Now — $#{@ebook.price}" %>
+  <% end %>
+<% end %>
+
 <% unless @ebook.live? %>
   <%= link_to "Advance Status", advance_status_ebook_path(@ebook), data: { turbo_method: :patch } %>
 <% end %>

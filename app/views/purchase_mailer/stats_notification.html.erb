@@ -1,0 +1,11 @@
+<h1>Ebook Statistics Update</h1>
+
+<p>Hi <%= @seller.name %>,</p>
+
+<p>Here are the latest stats for <strong><%= @ebook.title %></strong>:</p>
+
+<ul>
+  <li>Total purchases: <%= @ebook.purchase_count %></li>
+  <li>Page visits: <%= @ebook.page_visit_count %></li>
+  <li>Preview PDF views: <%= @ebook.preview_view_count %></li>
+</ul>

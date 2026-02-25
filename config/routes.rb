@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       get :download_preview
     end
   end
+
+  resources :purchases, only: [:create]
 end
