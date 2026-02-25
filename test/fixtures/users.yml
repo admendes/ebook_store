@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  email: MyString
+  password_digest: MyString
+  role: MyString
+  status: MyString
+  balance: 9.99
+  last_password_change: 2026-02-25 09:42:18
+
+two:
+  name: MyString
+  email: MyString
+  password_digest: MyString
+  role: MyString
+  status: MyString
+  balance: 9.99
+  last_password_change: 2026-02-25 09:42:18

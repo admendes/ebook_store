@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  buyer_id: 1
+  ebook: one
+  amount: 9.99
+  seller_commission: 9.99
+
+two:
+  buyer_id: 1
+  ebook: two
+  amount: 9.99
+  seller_commission: 9.99

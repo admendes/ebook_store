@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  price: 9.99
+  status: MyString
+  purchase_count: 1
+  preview_view_count: 1
+  page_visit_count: 1
+  user: one
+
+two:
+  title: MyString
+  description: MyText
+  price: 9.99
+  status: MyString
+  purchase_count: 1
+  preview_view_count: 1
+  page_visit_count: 1
+  user: two

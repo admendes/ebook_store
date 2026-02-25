@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ebook: one
+  ip_address: MyString
+  browser: MyString
+  location: MyString
+
+two:
+  ebook: two
+  ip_address: MyString
+  browser: MyString
+  location: MyString
