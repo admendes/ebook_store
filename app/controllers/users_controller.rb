@@ -28,6 +28,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      if user_params[:password].present?
+        @user.update_column(:last_password_change, Time.current)
+      end
       redirect_to @user, notice: "User updated successfully!"
     else
       render :edit, status: :unprocessable_entity
@@ -50,7 +53,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :role, :status, :balance, :profile_image)
+    params.require(:user).permit(:name, :email, :role, :status, :balance, :profile_image, :password, :password_confirmation)
   end
 
 end

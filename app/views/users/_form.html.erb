@@ -38,6 +38,16 @@
     <%= f.file_field :profile_image, accept: "image/*" %>
   </p>
 
+  <p>
+    <%= f.label :password, "New Password (leave blank to keep current)" %>
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation, "Confirm New Password" %>
+    <%= f.password_field :password_confirmation %>
+  </p>
+
   <%= f.submit %>
 
 <% end %>
