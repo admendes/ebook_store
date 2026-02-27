@@ -1,39 +1,52 @@
 <h1>Ebooks</h1>
 
-<%= link_to "New Ebook", new_ebook_path %>
+<%= link_to "New Ebook", new_ebook_path, style: "display:inline-block; margin-bottom:15px; padding:6px 12px; background:#333; color:white; text-decoration:none; border-radius:4px;" %>
 
-<table>
+<table style="width:100%; border-collapse:collapse;">
   <thead>
-    <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th>Status</th>
-      <th>Seller</th>
-      <th>Purchases</th>
-      <th>Cover</th>
-      <th>Actions</th>
+    <tr style="background:#f5f5f5;">
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Cover</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Title</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Price</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Status</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Seller</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Purchases</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @ebooks.each do |ebook| %>
-      <tr>
-        <td><%= ebook.title %></td>
-        <td><%= ebook.price %></td>
-        <td><%= ebook.status %></td>
-        <td><%= ebook.user.name %></td>
-        <td><%= ebook.purchase_count %></td>
-        <td>
-          <%= link_to "View", ebook %>
-          <%= link_to "Edit", edit_ebook_path(ebook) %>
-          <% unless ebook.live? %>
-            <%= button_to "Advance Status", advance_status_ebook_path(ebook), method: :patch %>
-          <% end %>
-          <%= button_to "Delete", ebook, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-        </td>
-        <td>
+      <tr style="border-bottom:1px solid #ddd;">
+        <td style="padding:10px;">
           <% if ebook.cover_image.attached? %>
-            <%= image_tag ebook.cover_image, width: 50 %>
+            <%= image_tag ebook.cover_image, width: 50, style: "border-radius:4px;" %>
+          <% else %>
+            <span style="color:#aaa; font-size:0.85em;">No cover</span>
           <% end %>
+        </td>
+        <td style="padding:10px;"><%= ebook.title %></td>
+        <td style="padding:10px;">$<%= ebook.price %></td>
+        <td style="padding:10px;">
+          <% color = case ebook.status
+                     when "draft"   then { bg: "#fff3cd", text: "#856404" }
+                     when "pending" then { bg: "#cce5ff", text: "#004085" }
+                     when "live"    then { bg: "#d4edda", text: "#155724" }
+                     end %>
+          <span style="padding:3px 8px; border-radius:10px; font-size:0.85em; background:<%= color[:bg] %>; color:<%= color[:text] %>;">
+            <%= ebook.status %>
+          </span>
+        </td>
+        <td style="padding:10px;"><%= ebook.user.name %></td>
+        <td style="padding:10px;"><%= ebook.purchase_count %></td>
+        <td style="padding:10px;">
+          <div style="display:flex; gap:5px; align-items:center; flex-wrap:wrap;">
+            <%= link_to "View", ebook, style: "padding:4px 8px; background:#007bff; color:white; text-decoration:none; border-radius:3px; font-size:0.85em;" %>
+            <%= link_to "Edit", edit_ebook_path(ebook), style: "padding:4px 8px; background:#ffc107; color:black; text-decoration:none; border-radius:3px; font-size:0.85em;" %>
+            <% unless ebook.live? %>
+              <%= button_to "Advance Status", advance_status_ebook_path(ebook), method: :patch, form: { style: "display:inline" }, style: "padding:4px 8px; background:#17a2b8; color:white; border:none; border-radius:3px; font-size:0.85em; cursor:pointer;" %>
+            <% end %>
+            <%= button_to "Delete", ebook, method: :delete, form: { style: "display:inline" }, data: { turbo_confirm: "Are you sure?" }, style: "padding:4px 8px; background:#6c757d; color:white; border:none; border-radius:3px; font-size:0.85em; cursor:pointer;" %>
+          </div>
         </td>
       </tr>
     <% end %>

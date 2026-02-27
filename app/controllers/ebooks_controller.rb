@@ -43,8 +43,13 @@ class EbooksController < ApplicationController
 
   def advance_status
     @ebook = Ebook.find(params[:id])
-    @ebook.advance_status!
-    redirect_to @ebook, notice: "Ebook status updated to #{@ebook.status}!"
+    new_status = case @ebook.status
+                when "draft" then "pending"
+                when "pending" then "live"
+                else @ebook.status
+                end
+    @ebook.update_column(:status, new_status)
+    redirect_to @ebook, notice: "Ebook status updated to #{new_status}!"
   end
 
   def download_preview

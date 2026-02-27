@@ -1,0 +1,23 @@
+<h1>Login</h1>
+
+<%= form_with url: login_path, method: :post do |f| %>
+
+  <% if flash[:alert] %>
+    <p style="color:red"><%= flash[:alert] %></p>
+  <% end %>
+
+  <p>
+    <%= f.label :email %>
+    <%= f.email_field :email, required: true %>
+  </p>
+
+  <p>
+    <%= f.label :password %>
+    <%= f.password_field :password, required: true %>
+  </p>
+
+  <%= f.submit "Log In" %>
+
+<% end %>
+
+<p>Don't have an account? <%= link_to "Sign up", signup_path %></p>

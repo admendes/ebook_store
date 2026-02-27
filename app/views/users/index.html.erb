@@ -1,31 +1,39 @@
 <h1>Users</h1>
 
-<%= link_to "New User", new_user_path %>
+<%= link_to "New User", new_user_path, style: "display:inline-block; margin-bottom:15px; padding:6px 12px; background:#333; color:white; text-decoration:none; border-radius:4px;" %>
 
-<table>
+<table style="width:100%; border-collapse:collapse;">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Role</th>
-      <th>Status</th>
-      <th>Balance</th>
-      <th>Actions</th>
+    <tr style="background:#f5f5f5;">
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Name</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Email</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Role</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Status</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Balance</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.role %></td>
-        <td><%= user.status %></td>
-        <td><%= user.balance %></td>
-        <td>
-          <%= link_to "View", user %>
-          <%= link_to "Edit", edit_user_path(user) %>
-          <%= link_to user.enabled? ? "Disable" : "Enable", toggle_status_user_path(user), method: :patch, data: { turbo_method: :patch } %>
-          <%= button_to "Delete", user, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+      <tr style="border-bottom:1px solid #ddd;">
+        <td style="padding:10px;"><%= user.name %></td>
+        <td style="padding:10px;"><%= user.email %></td>
+        <td style="padding:10px;"><%= user.role %></td>
+        <td style="padding:10px;">
+          <span style="padding:3px 8px; border-radius:10px; font-size:0.85em; background:<%= user.enabled? ? '#d4edda' : '#f8d7da' %>; color:<%= user.enabled? ? '#155724' : '#721c24' %>;">
+            <%= user.status %>
+          </span>
+        </td>
+        <td style="padding:10px;">$<%= user.balance %></td>
+        <td style="padding:10px;">
+          <div style="display:flex; gap:5px; align-items:center;">
+            <%= link_to "View", user, style: "padding:4px 8px; background:#007bff; color:white; text-decoration:none; border-radius:3px; font-size:0.85em;" %>
+            <%= link_to "Edit", edit_user_path(user), style: "padding:4px 8px; background:#ffc107; color:black; text-decoration:none; border-radius:3px; font-size:0.85em;" %>
+            <% btn_color = user.enabled? ? "#dc3545" : "#28a745" %>
+            <% btn_label = user.enabled? ? "Disable" : "Enable" %>
+            <%= button_to btn_label, toggle_status_user_path(user), method: :patch, style: "padding:4px 8px; background:#{btn_color}; color:white; border:none; border-radius:3px; font-size:0.85em; cursor:pointer;" %>
+            <%= button_to "Delete", user, method: :delete, form: { style: "display:inline" }, data: { turbo_confirm: "Are you sure?" }, style: "padding:4px 8px; background:#6c757d; color:white; border:none; border-radius:3px; font-size:0.85em; cursor:pointer;" %>
+          </div>
         </td>
       </tr>
     <% end %>

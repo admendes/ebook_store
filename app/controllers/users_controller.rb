@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def toggle_status
     @user = User.find(params[:id])
     new_status = @user.enabled? ? "disabled" : "enabled"
-    @user.update(status: new_status)
+    @user.update_column(:status, new_status)
     redirect_to users_path, notice: "User #{new_status} successfully!"
   end
 

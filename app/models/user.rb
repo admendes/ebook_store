@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :purchased_ebooks, through: :purchases, source: :ebook
   has_one_attached :profile_image
 
+  has_secure_password
+
   ROLES = %w[seller buyer].freeze
   STATUSES = %w[enabled disabled].freeze
 

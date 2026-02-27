@@ -10,10 +10,22 @@
 
   <body>
 
-    <nav style="background:#333; padding:10px; margin-bottom:20px;">
-      <%= link_to "📚 Ebook Store", root_path, style: "color:white; font-weight:bold; margin-right:20px; text-decoration:none;" %>
-      <%= link_to "Ebooks", ebooks_path, style: "color:white; margin-right:15px; text-decoration:none;" %>
-      <%= link_to "Users", users_path, style: "color:white; text-decoration:none;" %>
+    <nav style="background:#333; padding:10px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between;">
+      <div>
+        <%= link_to "📚 Ebook Store", root_path, style: "color:white; font-weight:bold; margin-right:20px; text-decoration:none;" %>
+        <%= link_to "Ebooks", ebooks_path, style: "color:white; margin-right:15px; text-decoration:none;" %>
+        <%= link_to "Users", users_path, style: "color:white; text-decoration:none;" %>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:15px;">
+        <% if logged_in? %>
+          <span style="color:white;">Hi, <%= current_user.name %>!</span>
+          <%= button_to "Logout", logout_path, method: :delete, style: "color:white; text-decoration:none; background:none; border:none; cursor:pointer; font-size:1em;" %>
+        <% else %>
+          <%= link_to "Login", login_path, style: "color:white; text-decoration:none;" %>
+          <%= link_to "Sign Up", signup_path, style: "color:white; text-decoration:none;" %>
+        <% end %>
+      </div>
     </nav>
 
     <div style="padding: 0 20px;">

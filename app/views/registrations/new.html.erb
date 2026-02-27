@@ -1,0 +1,42 @@
+<h1>Sign Up</h1>
+
+<%= form_with model: @user, url: signup_path do |f| %>
+
+  <% if @user.errors.any? %>
+    <div style="color:red">
+      <% @user.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true %>
+  </p>
+
+  <p>
+    <%= f.label :email %>
+    <%= f.email_field :email, required: true %>
+  </p>
+
+  <p>
+    <%= f.label :role %>
+    <%= f.select :role, User::ROLES %>
+  </p>
+
+  <p>
+    <%= f.label :password %>
+    <%= f.password_field :password, required: true %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation, "Confirm Password" %>
+    <%= f.password_field :password_confirmation, required: true %>
+  </p>
+
+  <%= f.submit "Sign Up" %>
+
+<% end %>
+
+<p>Already have an account? <%= link_to "Log in", login_path %></p>
