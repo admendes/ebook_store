@@ -37,7 +37,17 @@
     <%= f.label :cover_image, "Cover Image" %>
     <%= f.file_field :cover_image, accept: "image/*" %>
   </p>
-  
+
+  <p>
+    <%= f.label :tag_ids, "Tags" %>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+      <label style="margin-right:10px;">
+        <%= b.check_box %>
+        <%= b.label %>
+      </label>
+    <% end %>
+  </p>
+
   <%= f.submit %>
 
 <% end %>

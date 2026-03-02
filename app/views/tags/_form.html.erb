@@ -1,0 +1,18 @@
+<%= form_with model: tag do |f| %>
+
+  <% if tag.errors.any? %>
+    <div style="color:red">
+      <% tag.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+
+  <%= f.submit %>
+
+<% end %>

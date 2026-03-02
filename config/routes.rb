@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "tags/index"
+  get "tags/new"
+  get "tags/edit"
   root "ebooks#index"
 
   # Authentication
@@ -21,7 +24,13 @@ Rails.application.routes.draw do
       patch :advance_status
       get   :download_preview
     end
+    collection do
+      get :filter
+    end
   end
+
+  # Tags
+  resources :tags
 
   # Purchases
   resources :purchases, only: [:create]

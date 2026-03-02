@@ -2,6 +2,21 @@ class EbooksController < ApplicationController
 
   def index
     @ebooks = Ebook.all
+    @tags = Tag.all
+    @sellers = User.where(role: "seller").joins(:ebooks).distinct
+  end
+
+  def filter
+    @ebooks = Ebook.all
+    @tags = Tag.all
+    @sellers = User.where(role: "seller").joins(:ebooks).distinct
+    if params[:tag_id].present?
+      @ebooks = @ebooks.joins(:tags).where(tags: { id: params[:tag_id] })
+    end
+    if params[:seller_id].present?
+      @ebooks = @ebooks.where(user_id: params[:seller_id])
+    end
+    render :index
   end
 
   def show
@@ -61,7 +76,7 @@ class EbooksController < ApplicationController
   private
 
   def ebook_params
-    params.require(:ebook).permit(:title, :description, :price, :status, :user_id, :preview_pdf, :cover_image)
+    params.require(:ebook).permit(:title, :description, :price, :status, :user_id, :preview_pdf, :cover_image, tag_ids: [])
   end
 
 end

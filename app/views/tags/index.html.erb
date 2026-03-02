@@ -1,0 +1,27 @@
+<h1>Tags</h1>
+
+<%= link_to "New Tag", new_tag_path, style: "display:inline-block; margin-bottom:15px; padding:6px 12px; background:#333; color:white; text-decoration:none; border-radius:4px;" %>
+
+<table style="width:100%; border-collapse:collapse;">
+  <thead>
+    <tr style="background:#f5f5f5;">
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Name</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Ebooks</th>
+      <th style="padding:10px; text-align:left; border-bottom:2px solid #ddd;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr style="border-bottom:1px solid #ddd;">
+        <td style="padding:10px;"><%= tag.name %></td>
+        <td style="padding:10px;"><%= tag.ebooks.count %></td>
+        <td style="padding:10px;">
+          <div style="display:flex; gap:5px;">
+            <%= link_to "Edit", edit_tag_path(tag), style: "padding:4px 8px; background:#ffc107; color:black; text-decoration:none; border-radius:3px; font-size:0.85em;" %>
+            <%= button_to "Delete", tag, method: :delete, form: { style: "display:inline" }, data: { turbo_confirm: "Are you sure?" }, style: "padding:4px 8px; background:#6c757d; color:white; border:none; border-radius:3px; font-size:0.85em; cursor:pointer;" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
