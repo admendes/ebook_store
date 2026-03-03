@@ -27,4 +27,12 @@ class User < ApplicationRecord
   def enabled?
     status == "enabled"
   end
+
+  def enable!
+    update_column(:status, "enabled")
+  end
+
+  def disable!
+    update_column(:status, "disabled")
+  end
 end

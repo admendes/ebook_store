@@ -17,6 +17,19 @@ class Ebook < ApplicationRecord
   validates :user_id, presence: true
   validate :preview_pdf_must_be_pdf
 
+  scope :published, -> { where(status: "live") }
+  scope :by_seller, ->(user) { where(user: user) }
+  scope :drafts, -> { where(status: "draft") }
+  scope :pending_review, -> { where(status: "pending") }
+
+  def submit_for_review!
+    update_column(:status, "pending")
+  end
+
+  def publish!
+    update_column(:status, "live")
+  end
+
   def advance_status!
     case status
     when "draft"   then update!(status: "pending")
