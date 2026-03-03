@@ -1,3 +1,5 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
   get "tags/index"
   get "tags/new"
@@ -34,4 +36,6 @@ Rails.application.routes.draw do
 
   # Purchases
   resources :purchases, only: [:create]
+
+  mount Sidekiq::Web => "/sidekiq"
 end

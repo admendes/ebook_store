@@ -32,8 +32,7 @@ class PurchasesController < ApplicationController
       seller.update!(balance: seller.balance + commission)
     end
 
-    PurchaseMailer.seller_notification(@purchase).deliver_now
-    PurchaseMailer.stats_notification(@purchase).deliver_now
+    PurchaseNotificationJob.perform_later(@purchase.id)
 
     redirect_to @ebook, notice: "Ebook purchased successfully!"
 
