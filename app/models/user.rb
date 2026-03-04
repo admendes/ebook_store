@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_secure_password validations: false
 
   validates :password, length: { minimum: 6 }, if: -> { new_record? || password.present? }
-  
+
   ROLES = %w[seller buyer].freeze
   STATUSES = %w[enabled disabled].freeze
 

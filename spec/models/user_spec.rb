@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   let(:user)   { create(:user) }
   let(:seller) { create(:user, :seller) }
 
@@ -51,7 +50,6 @@ RSpec.describe User, type: :model do
 
   # ─── Instance Methods ──────────────────────────────────────────
   describe "instance methods" do
-
     describe "#enable!" do
       it "sets status to enabled" do
         disabled_user = create(:user, :disabled)
@@ -98,5 +96,4 @@ RSpec.describe User, type: :model do
       end
     end
   end
-
 end

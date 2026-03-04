@@ -1,5 +1,4 @@
 class EbooksController < ApplicationController
-
   def index
     @ebooks = Ebook.all
     @tags = Tag.all
@@ -59,10 +58,10 @@ class EbooksController < ApplicationController
   def advance_status
     @ebook = Ebook.find(params[:id])
     new_status = case @ebook.status
-                when "draft" then "pending"
-                when "pending" then "live"
-                else @ebook.status
-                end
+    when "draft" then "pending"
+    when "pending" then "live"
+    else @ebook.status
+    end
     @ebook.update_column(:status, new_status)
     redirect_to @ebook, notice: "Ebook status updated to #{new_status}!"
   end
@@ -78,5 +77,4 @@ class EbooksController < ApplicationController
   def ebook_params
     params.require(:ebook).permit(:title, :description, :price, :status, :user_id, :preview_pdf, :cover_image, tag_ids: [])
   end
-
 end

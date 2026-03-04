@@ -1,10 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Factory Bot and Faker", type: :model do
-
   # ─── User Factory ──────────────────────────────────────────────
   describe "User factory" do
-
     it "creates a valid user with Faker data" do
       user = create(:user)
       expect(user).to be_valid
@@ -48,12 +46,10 @@ RSpec.describe "Factory Bot and Faker", type: :model do
       user2 = create(:user)
       expect(user1.email).not_to eq(user2.email)
     end
-
   end
 
   # ─── Ebook Factory ─────────────────────────────────────────────
   describe "Ebook factory" do
-
     let(:seller) { create(:user, :seller) }
 
     it "creates a valid ebook with Faker data" do
@@ -94,12 +90,10 @@ RSpec.describe "Factory Bot and Faker", type: :model do
       expect(ebook.live?).to be_truthy
       expect(ebook.price).to be >= 79.99
     end
-
   end
 
   # ─── Purchase Factory ──────────────────────────────────────────
   describe "Purchase factory" do
-
     it "creates a valid purchase" do
       purchase = create(:purchase)
       expect(purchase).to be_valid
@@ -120,12 +114,10 @@ RSpec.describe "Factory Bot and Faker", type: :model do
       expect(purchase.buyer).to eq(buyer)
       expect(purchase.ebook).to eq(ebook)
     end
-
   end
 
   # ─── Tag Factory ───────────────────────────────────────────────
   describe "Tag factory" do
-
     it "creates a valid tag" do
       tag = create(:tag)
       expect(tag).to be_valid
@@ -137,12 +129,10 @@ RSpec.describe "Factory Bot and Faker", type: :model do
       tag2 = create(:tag)
       expect(tag1.name).not_to eq(tag2.name)
     end
-
   end
 
   # ─── Complex Scenarios ─────────────────────────────────────────
   describe "complex factory scenarios" do
-
     it "creates a complete purchase flow" do
       seller   = create(:user, :seller, balance: 0)
       buyer    = create(:user, :buyer, balance: 100)
@@ -165,7 +155,5 @@ RSpec.describe "Factory Bot and Faker", type: :model do
       expect(Ebook.pending_review).to include(pending_ebook)
       expect(Ebook.published).to include(live_ebook)
     end
-
   end
-
 end

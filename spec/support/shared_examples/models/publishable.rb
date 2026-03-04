@@ -1,6 +1,5 @@
 RSpec.shared_examples "a publishable resource" do
   describe "status transitions" do
-
     context "when draft" do
       it "can be submitted for review" do
         subject.submit_for_review!

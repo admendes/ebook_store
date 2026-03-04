@@ -1,5 +1,4 @@
 class PurchaseMailer < ApplicationMailer
-
   def seller_notification(purchase)
     @purchase = purchase
     @ebook = purchase.ebook
@@ -22,5 +21,4 @@ class PurchaseMailer < ApplicationMailer
       subject: "Stats update for #{@ebook.title}"
     )
   end
-
 end

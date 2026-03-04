@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Purchase, type: :model do
-
   let(:seller)   { create(:user, :seller) }
   let(:buyer)    { create(:user, :buyer) }
   let(:ebook)    { create(:ebook, :live, user: seller, price: 20.00) }
@@ -44,5 +43,4 @@ RSpec.describe Purchase, type: :model do
       expect(purchase.seller_commission).to eq(purchase.amount * 0.10)
     end
   end
-
 end

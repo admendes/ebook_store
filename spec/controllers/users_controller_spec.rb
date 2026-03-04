@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-
   # ─── Unauthenticated access ──────────────────────────────────
   describe "unauthenticated access" do
     describe "GET #index" do
@@ -17,7 +16,6 @@ RSpec.describe UsersController, type: :controller do
 
   # ─── Authenticated access ────────────────────────────────────
   describe "authenticated access", :authenticated do
-
     describe "GET #index" do
       before { get :index }
 
@@ -87,7 +85,5 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to redirect_to(users_path)
       end
     end
-
   end
-
 end

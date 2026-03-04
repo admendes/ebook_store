@@ -1,5 +1,4 @@
 class PurchasesController < ApplicationController
-
   def create
     @ebook = Ebook.find(params[:ebook_id])
     @buyer = User.find(params[:buyer_id])
@@ -39,5 +38,4 @@ class PurchasesController < ApplicationController
   rescue ActiveRecord::RecordInvalid => e
     redirect_to @ebook, alert: "Purchase failed: #{e.message}. No charges were made."
   end
-
 end

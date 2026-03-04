@@ -2,7 +2,6 @@ require 'rails_helper'
 
 # ─── Shared Examples for Models ──────────────────────────────────
 RSpec.describe "Shared Model Behaviors" do
-
   describe User, type: :model do
     subject { create(:user) }
 
@@ -24,12 +23,10 @@ RSpec.describe "Shared Model Behaviors" do
 
     it_behaves_like "a model with timestamps"
   end
-
 end
 
 # ─── Shared Contexts ─────────────────────────────────────────────
 RSpec.describe "Shared Contexts", type: :model do
-
   describe "with published ebooks context" do
     include_context "with published ebooks"
 
@@ -84,5 +81,4 @@ RSpec.describe "Shared Contexts", type: :model do
       expect(user.last_password_change).to be < 6.months.ago
     end
   end
-
 end

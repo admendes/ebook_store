@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe EbooksController, type: :controller do
-
   # ─── Unauthenticated access ──────────────────────────────────
   describe "unauthenticated access" do
     describe "GET #index" do
@@ -26,7 +25,6 @@ RSpec.describe EbooksController, type: :controller do
 
   # ─── Authenticated access ────────────────────────────────────
   describe "authenticated access", :authenticated do
-
     describe "GET #index" do
       include_context "with published ebooks"
 
@@ -66,7 +64,5 @@ RSpec.describe EbooksController, type: :controller do
         expect(assigns(:ebook).page_visit_count).to eq(1)
       end
     end
-
   end
-
 end

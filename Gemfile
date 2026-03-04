@@ -62,6 +62,8 @@ group :development, :test do
   gem "shoulda-matchers"
   gem "faker"
   gem "rails-controller-testing"
+  gem "rubocop-rails-omakase"
+  gem "simplecov", require: false
 end
 
 group :development do

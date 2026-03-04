@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Ebook, type: :model do
-
   let(:seller) { create(:user, :seller) }
   let(:ebook)  { create(:ebook, user: seller) }
 
@@ -47,7 +46,6 @@ RSpec.describe Ebook, type: :model do
 
   # ─── Scopes ────────────────────────────────────────────────────
   describe "scopes" do
-
     describe ".published" do
       it "returns only live ebooks" do
         draft_ebook   = create(:ebook, user: seller)
@@ -104,7 +102,6 @@ RSpec.describe Ebook, type: :model do
 
   # ─── Instance Methods ──────────────────────────────────────────
   describe "instance methods" do
-
     describe "#advance_status!" do
       it "moves from draft to pending" do
         ebook.advance_status!
@@ -157,5 +154,4 @@ RSpec.describe Ebook, type: :model do
       end
     end
   end
-
 end
